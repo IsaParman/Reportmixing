@@ -8,7 +8,7 @@ function tampilkanForm() {
     var qc = document.getElementById("qc").value;
     var note = document.getElementById("note").value;
     
-    var hasilForm = "<p><strong>1.- Mesin:</strong> " + namaMesin + "</p>" +
+    var hasilForm = "<p><strong>1. Mesin:</strong> " + namaMesin + "</p>" +
                     "<p><strong>- Nama Produk:</strong> " + namaProduk + "</p>" +
                     "<p><strong>- Batch:</strong> " + batch + "</p>" +
                     "<p><strong>- Jam Transfer:</strong> " + jamTransfer + "</p>" +
