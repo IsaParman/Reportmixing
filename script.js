@@ -8,15 +8,14 @@ function tampilkanForm() {
     var qc = document.getElementById("qc").value;
     var note = document.getElementById("note").value;
     
-    var hasilForm = "<strong>Hasil Form:</strong> " +
-                    "<p><strong>Nama Mesin:</strong> " + namaMesin + "</p>" +
-                    "<p><strong>Nama Produk:</strong> " + namaProduk + "</p>" +
-                    "<p><strong>Batch:</strong> " + batch + "</p>" +
-                    "<p><strong>Jam Transfer:</strong> " + jamTransfer + "</p>" +
-                    "<p><strong>Operator Mixing:</strong> " + operatorMixing + "</p>" +
-                    "<p><strong>RnD:</strong> " + rnd + "</p>" +
-                    "<p><strong>QC:</strong> " + qc + "</p>" +
-                    "<p><strong>Note:</strong> " + note + "</p>";
+    var hasilForm = "<p><strong>1. Mesin:</strong> " + namaMesin + "</p>" +
+                    "<p><strong>- Nama Produk:</strong> " + namaProduk + "</p>" +
+                    "<p><strong>- Batch:</strong> " + batch + "</p>" +
+                    "<p><strong>- Jam Transfer:</strong> " + jamTransfer + "</p>" +
+                    "<p><strong>- Operator Mixing:</strong> " + operatorMixing + "</p>" +
+                    "<p><strong>- RnD:</strong> " + rnd + "</p>" +
+                    "<p><strong>- QC:</strong> " + qc + "</p>" +
+                    "<p><strong>- Note:</strong> " + note + "</p>";
     
     document.getElementById("hasilForm").innerHTML = hasilForm;
 }
