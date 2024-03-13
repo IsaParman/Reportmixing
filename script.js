@@ -14,10 +14,17 @@ function tampilkanForm() {
                     "<p><strong>- Jam Transfer:</strong> " + jamTransfer + "</p>" +
                     "<p><strong>- Operator Mixing:</strong> " + operatorMixing + "</p>" +
                     "<p><strong>- RnD:</strong> " + rnd + "</p>" +
-                    "<p><strong>- QC:</strong> " + qc + "</p>" +
-                    "<p><strong>- Note:</strong> " + note + "</p>";
+  if (qc === "Manual") {
+        hasilForm += "<p><strong>QC:</strong> " + manualQC + "</p>";
+    } else {
+        hasilForm += "<p><strong>QC:</strong> " + qc + "</p>";
+    }
+    hasilForm += "<p><strong>Note:</strong> " + note + "</p>";
     
     document.getElementById("hasilForm").innerHTML = hasilForm;
+}
+
+   document.getElementById("hasilForm").innerHTML = hasilForm;
 }
 
 function salinHasil() {
@@ -37,4 +44,14 @@ function setJamSekarang() {
     var minutes = now.getMinutes().toString().padStart(2, '0');
     var jam = hours + ":" + minutes;
     document.getElementById("jamTransfer").value = jam;
+}
+
+function toggleInputQC() {
+    var qcSelect = document.getElementById("qc");
+    var manualQCInput = document.getElementById("manualQC");
+    if (qcSelect.value === "Manual") {
+        manualQCInput.style.display = "inline-block";
+    } else {
+        manualQCInput.style.display = "none";
+    }
 }
