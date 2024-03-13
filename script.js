@@ -16,7 +16,6 @@ function tampilkanForm() {
                     "<p><strong>- RnD:</strong> " + rnd + "</p>" +
                     "<p><strong>- QC:</strong> " + qc + "</p>" +
                     "<p><strong>- Note:</strong> " + note + "</p>";
-                    
     
     document.getElementById("hasilForm").innerHTML = hasilForm;
 }
@@ -30,4 +29,12 @@ function salinHasil() {
     .catch(err => {
         console.error('Gagal menyalin: ', err);
     });
+}
+
+function setJamSekarang() {
+    var now = new Date();
+    var hours = now.getHours().toString().padStart(2, '0');
+    var minutes = now.getMinutes().toString().padStart(2, '0');
+    var jam = hours + ":" + minutes;
+    document.getElementById("jamTransfer").value = jam;
 }
