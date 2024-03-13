@@ -25,7 +25,11 @@
         <label for="rnd">RnD:</label>
         <input type="text" id="rnd" name="rnd"><br>
         <label for="qc">QC:</label>
-        <input type="text" id="qc" name="qc"><br>
+        <select id="qc" name="qc" onchange="toggleInputQC()">
+            <option value="Isa">Isa</option>
+            <option value="Manual">Manual</option>
+        </select><br>
+        <input type="text" id="manualQC" name="manualQC" style="display: none;"><br>
         <label for="note">Note:</label>
         <input type="text" id="note" name="note"><br><br>
         <button type="button" onclick="tampilkanForm()">Tampilkan Isi Form</button>
