@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Form Input</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Report Mixing</h1>
+    <form id="myForm">
+        <label for="namaMesin">Nama Mesin:</label>
+        <input type="text" id="namaMesin" name="namaMesin"><br>
+        <label for="namaProduk">Nama Produk:</label>
+        <input type="text" id="namaProduk" name="namaProduk"><br>
+        <label for="batch">Batch:</label>
+        <input type="text" id="batch" name="batch"><br>
+        <label for="jamTransfer">Jam Transfer:</label>
+        <input type="text" id="jamTransfer" name="jamTransfer"><br>
+        <label for="operatorMixing">Operator Mixing:</label>
+        <input type="text" id="operatorMixing" name="operatorMixing"><br>
+        <label for="rnd">RnD:</label>
+        <input type="text" id="rnd" name="rnd"><br>
+        <label for="qc">QC:</label>
+        <input type="text" id="qc" name="qc"><br>
+        <label for="note">Note:</label>
+        <input type="text" id="note" name="note"><br><br>
+        <button type="button" onclick="tampilkanForm()">Tampilkan Isi Form</button>
+        <button type="button" onclick="salinHasil()">Salin Hasil</button>
+    </form>
+
+    <div id="hasilForm"></div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
