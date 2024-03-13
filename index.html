@@ -11,14 +11,15 @@
 <div class="container">
     <h1>Report Mixing</h1>
     <form id="myForm">
-        <label for="namaMesin">Mesin:</label>
+        <label for="namaMesin">Nama Mesin:</label>
         <input type="text" id="namaMesin" name="namaMesin"><br>
         <label for="namaProduk">Nama Produk:</label>
         <input type="text" id="namaProduk" name="namaProduk"><br>
         <label for="batch">Batch:</label>
         <input type="text" id="batch" name="batch"><br>
         <label for="jamTransfer">Jam Transfer:</label>
-        <input type="text" id="jamTransfer" name="jamTransfer"><br>
+        <input type="time" id="jamTransfer" name="jamTransfer" value="00:00" min="00:00" max="23:59">
+        <button type="button" onclick="setJamSekarang()">Set Jam Sekarang</button><br>
         <label for="operatorMixing">Operator Mixing:</label>
         <input type="text" id="operatorMixing" name="operatorMixing"><br>
         <label for="rnd">RnD:</label>
