@@ -12,18 +12,39 @@
     <h1>Report Mixing</h1>
     <form id="myForm">
         <label for="namaMesin">Nama Mesin:</label>
-        <input type="text" id="namaMesin" name="namaMesin"><br>
+        <select id="namaMesinPrefix" onchange="updateNamaMesinText()">
+            <option value="Mesin 1000Kg (A)">Mesin 1000Kg (A)</option>
+            <option value="Mesin 1000Kg (B)">Mesin 1000Kg (B)</option>
+            <option value="Mesin 100Kg">Mesin 100Kg</option>
+            <option value="Mesin 50Kg">Mesin 50Kg</option>
+            <option value="Mesin Homogen">Mesin Homogen</option>
+            <option value="Mesin Roll">Mesin Roll</option>
+        </select>
+        <input type="text" id="namaMesinSuffix" name="namaMesinSuffix"><br>
         <label for="namaProduk">Nama Produk:</label>
         <input type="text" id="namaProduk" name="namaProduk"><br>
         <label for="batch">Batch:</label>
-        <input type="text" id="batch" name="batch"><br>
+        <select id="batchPrefix" onchange="updateBatchText()">
+            <option value="MBBA">MBBA</option>
+            <option value="MBBB">MBBB</option>
+            <option value="MBBC">MBBC</option>
+            <option value="MBBD">MBBD</option>
+            <option value="MBBE">MBBE</option>
+            <option value="MBBF">MBBF</option>
+        </select>
+        <input type="text" id="batchSuffix" name="batchSuffix"><br>
         <label for="jamTransfer">Jam Transfer:</label>
         <input type="time" id="jamTransfer" name="jamTransfer" value="00:00" min="00:00" max="23:59">
         <button type="button" onclick="setJamSekarang()">Set Jam Sekarang</button><br>
         <label for="operatorMixing">Operator Mixing:</label>
         <input type="text" id="operatorMixing" name="operatorMixing"><br>
         <label for="rnd">RnD:</label>
-        <input type="text" id="rnd" name="rnd"><br>
+        <select id="rnd" name="rnd" onchange="toggleInputRND()">
+            <option value="Chai">Chai</option>
+            <option value="Zhang">Zhang</option>
+            <option value="Manual">Manual</option>
+        </select><br>
+        <input type="text" id="manualRND" name="manualRND" style="display: none;"><br>
         <label for="qc">QC:</label>
         <select id="qc" name="qc" onchange="toggleInputQC()">
             <option value="Isa">Isa</option>
