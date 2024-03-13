@@ -1,7 +1,11 @@
 function tampilkanForm() {
-    var namaMesin = document.getElementById("namaMesin").value;
+    var namaMesinPrefix = document.getElementById("namaMesinPrefix").value;
+    var namaMesinSuffix = document.getElementById("namaMesinSuffix").value;
+    var namaMesin = namaMesinPrefix + " " + namaMesinSuffix;
     var namaProduk = document.getElementById("namaProduk").value;
-    var batch = document.getElementById("batch").value;
+    var batchPrefix = document.getElementById("batchPrefix").value;
+    var batchSuffix = document.getElementById("batchSuffix").value;
+    var batch = batchPrefix + batchSuffix; // Menghapus spasi di antara prefix dan suffix
     var jamTransfer = document.getElementById("jamTransfer").value;
     var operatorMixing = document.getElementById("operatorMixing").value;
     var rnd = document.getElementById("rnd").value;
@@ -13,18 +17,18 @@ function tampilkanForm() {
                     "<p><strong>- Batch:</strong> " + batch + "</p>" +
                     "<p><strong>- Jam Transfer:</strong> " + jamTransfer + "</p>" +
                     "<p><strong>- Operator Mixing:</strong> " + operatorMixing + "</p>" +
-                    "<p><strong>- RnD:</strong> " + rnd + "</p>" +
-  if (qc === "Manual") {
-        hasilForm += "<p><strong>QC:</strong> " + manualQC + "</p>";
+                    "<p><strong>- RnD:</strong> " + rnd + "</p>";
+
+    if (qc === "Manual") {
+        var manualQC = document.getElementById("manualQC").value;
+        hasilForm += "<p><strong>- QC:</strong> " + manualQC + "</p>";
     } else {
-        hasilForm += "<p><strong>QC:</strong> " + qc + "</p>";
+        hasilForm += "<p><strong>- QC:</strong> " + qc + "</p>";
     }
-    hasilForm += "<p><strong>Note:</strong> " + note + "</p>";
+    
+    hasilForm += "<p><strong>- Note:</strong> " + note + "</p>";
     
     document.getElementById("hasilForm").innerHTML = hasilForm;
-}
-
-   document.getElementById("hasilForm").innerHTML = hasilForm;
 }
 
 function salinHasil() {
@@ -46,6 +50,16 @@ function setJamSekarang() {
     document.getElementById("jamTransfer").value = jam;
 }
 
+function toggleInputRND() {
+    var rndSelect = document.getElementById("rnd");
+    var manualRNDInput = document.getElementById("manualRND");
+    if (rndSelect.value === "Manual") {
+        manualRNDInput.style.display = "inline-block";
+    } else {
+        manualRNDInput.style.display = "none";
+    }
+}
+
 function toggleInputQC() {
     var qcSelect = document.getElementById("qc");
     var manualQCInput = document.getElementById("manualQC");
@@ -54,4 +68,18 @@ function toggleInputQC() {
     } else {
         manualQCInput.style.display = "none";
     }
+}
+
+function updateBatchText() {
+    var batchPrefix = document.getElementById("batchPrefix").value;
+    var batchSuffix = document.getElementById("batchSuffix").value;
+    var batch = batchPrefix + batchSuffix; // Menghapus spasi di antara prefix dan suffix
+    document.getElementById("batch").value = batch;
+}
+
+function updateNamaMesinText() {
+    var namaMesinPrefix = document.getElementById("namaMesinPrefix").value;
+    var namaMesinSuffix = document.getElementById("namaMesinSuffix").value;
+    var namaMesin = namaMesinPrefix + " " + namaMesinSuffix;
+    document.getElementById("namaMesin").value = namaMesin;
 }
