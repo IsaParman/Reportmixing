@@ -42,7 +42,7 @@
         <select id="rnd" name="rnd" onchange="toggleInputRND()">
             <option value="Chai">Chai</option>
             <option value="Zhang">Zhang</option>
-            <option value="Manual">Manual</option>
+            <option value="Manual">-</option>
         </select><br>
         <input type="text" id="manualRND" name="manualRND" style="display: none;"><br>
         <label for="qc">QC:</label>
@@ -58,7 +58,19 @@
     </form>
 
     <div id="hasilForm"></div>
+
 </div>
+
+<div class="container">
+    <h2>Remove Empty Lines from Text</h2>
+    <form id="form">
+      <label for="textInput">Enter Text:</label>
+      <textarea id="textInput" rows="5" cols="50"></textarea>
+      <button type="button" onclick="removeEmptyLines()">Remove Empty Lines</button>
+      <button type="button" onclick="copyText()">Copy Text</button>
+    </form>
+    <p id="output"></p>
+  </div>
 
 <script src="script.js"></script>
 
