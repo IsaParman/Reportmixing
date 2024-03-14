@@ -49,18 +49,3 @@ button:hover {
 h1 {
     text-align: center;
 }
-
-/* Tampilan default */
-#manualRND,
-#manualQC {
-    display: none;
-}
-
-/* Tampilan ketika lebar layar kurang dari atau sama dengan 768px (misalnya untuk perangkat mobile) */
-@media (max-width: 768px) {
-    #manualRND,
-    #manualQC {
-        display: inline-block;
-    }
-}
-
