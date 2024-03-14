@@ -30,6 +30,9 @@ function tampilkanForm() {
     
     document.getElementById("hasilForm").innerHTML = hasilForm;
 }
+function pindahHalaman() {
+    window.location.href = 'hapusteks.html';
+}
 
 function salinHasil() {
     var hasilForm = document.getElementById("hasilForm").innerText;
@@ -83,3 +86,24 @@ function updateNamaMesinText() {
     var namaMesin = namaMesinPrefix + " " + namaMesinSuffix;
     document.getElementById("namaMesin").value = namaMesin;
 }
+
+function removeEmptyLines() {
+    var inputText = document.getElementById("textInput").value;
+    var lines = inputText.split('\n');
+    var nonEmptyLines = lines.filter(function(line) {
+      return line.trim() !== '';
+    });
+    var outputText = nonEmptyLines.join('\n');
+    document.getElementById("output").textContent = "" + outputText;
+  }
+  
+  function copyText() {
+    var outputText = document.getElementById("output");
+    var textArea = document.createElement("textarea");
+    textArea.value = outputText.textContent;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand("Copy");
+    document.body.removeChild(textArea);
+    alert("Text copied to clipboard");
+  }
