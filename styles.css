@@ -58,3 +58,8 @@ textarea {
     resize: vertical;
     margin-bottom: 10px;
   }
+
+.para2 {
+    margin-top: 10px;
+    white-space: pre-line; /* Preserve line breaks */
+}
