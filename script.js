@@ -53,6 +53,17 @@ function pindahHalaman() {
     window.location.href = 'hapusteks.html';
 }
 
+function salinHasil() {
+    var hasilForm = document.getElementById("hasilForm").innerText;
+    navigator.clipboard.writeText(hasilForm)
+    .then(() => {
+        alert('Hasil berhasil disalin!');
+    })
+    .catch(err => {
+        console.error('Gagal menyalin: ', err);
+    });
+}
+
 function setJamSekarang() {
     var now = new Date();
     var hours = now.getHours().toString().padStart(2, '0');
@@ -103,15 +114,14 @@ function removeEmptyLines() {
     });
     var outputText = nonEmptyLines.join('\n');
     document.getElementById("output").textContent = "" + outputText;
+    
+    // Salin teks yang telah diproses ke clipboard
+    navigator.clipboard.writeText(outputText)
+    .then(() => {
+        alert('Teks berhasil diproses dan disalin!');
+    })
+    .catch(err => {
+        console.error('Gagal menyalin teks: ', err);
+    });
 }
 
-function copyText() {
-    var outputText = document.getElementById("output");
-    var textArea = document.createElement("textarea");
-    textArea.value = outputText.textContent;
-    document.body.appendChild(textArea);
-    textArea.select();
-    document.execCommand("Copy");
-    document.body.removeChild(textArea);
-    alert("Text copied to clipboard");
-}
