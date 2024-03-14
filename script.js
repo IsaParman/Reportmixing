@@ -29,20 +29,28 @@ function tampilkanForm() {
     hasilForm += "<p><strong>- Note:</strong> " + note + "</p>";
     
     document.getElementById("hasilForm").innerHTML = hasilForm;
-}
-function pindahHalaman() {
-    window.location.href = 'hapusteks.html';
+    
+    // Mengisi textarea pada form Remove Empty Lines from Text
+    var hasilFormPlainText = "1. Mesin: " + namaMesin + "\n" +
+                             "- Nama Produk: " + namaProduk + "\n" +
+                             "- Batch: " + batch + "\n" +
+                             "- Jam Transfer: " + jamTransfer + "\n" +
+                             "- Operator Mixing: " + operatorMixing + "\n" +
+                             "- RnD: " + rnd + "\n";
+    
+    if (qc === "Manual") {
+        hasilFormPlainText += "- QC: " + manualQC + "\n";
+    } else {
+        hasilFormPlainText += "- QC: " + qc + "\n";
+    }
+    
+    hasilFormPlainText += "- Note: " + note;
+    
+    document.getElementById("textInput").value = hasilFormPlainText;
 }
 
-function salinHasil() {
-    var hasilForm = document.getElementById("hasilForm").innerText;
-    navigator.clipboard.writeText(hasilForm)
-    .then(() => {
-        alert('Hasil berhasil disalin!');
-    })
-    .catch(err => {
-        console.error('Gagal menyalin: ', err);
-    });
+function pindahHalaman() {
+    window.location.href = 'hapusteks.html';
 }
 
 function setJamSekarang() {
@@ -95,9 +103,9 @@ function removeEmptyLines() {
     });
     var outputText = nonEmptyLines.join('\n');
     document.getElementById("output").textContent = "" + outputText;
-  }
-  
-  function copyText() {
+}
+
+function copyText() {
     var outputText = document.getElementById("output");
     var textArea = document.createElement("textarea");
     textArea.value = outputText.textContent;
@@ -106,4 +114,4 @@ function removeEmptyLines() {
     document.execCommand("Copy");
     document.body.removeChild(textArea);
     alert("Text copied to clipboard");
-  }
+}
