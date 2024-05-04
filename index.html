@@ -4,7 +4,63 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Form Input</title>
-<link rel="stylesheet" type="text/css" href="styles.css">
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+form {
+    margin-bottom: 20px;
+}
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+input[type="text"], select, textarea {
+    width: calc(100% - 22px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+button:hover {
+    background-color: #45a049;
+}
+#hasilForm {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+h1 {
+    text-align: center;
+}
+.para2 {
+    margin-top: 10px;
+    white-space: pre-line; /* Preserve line breaks */
+}
+</style>
 </head>
 <body>
 
@@ -39,12 +95,11 @@
         <label for="operatorMixing">Operator Mixing:</label>
         <input type="text" id="operatorMixing" name="operatorMixing"><br>
         <label for="rnd">RnD:</label>
-        <select id="rnd" name="rnd" onchange="toggleInputRND()">
+        <select id="rnd" name="rnd">
             <option value="Chai">Chai</option>
             <option value="Zhang">Zhang</option>
-            <option value="Manual">-</option>
+            <option value="Rizal">Rizal</option>
         </select><br>
-        <input type="text" id="manualRND" name="manualRND" style="display: none;"><br>
         <label for="qc">QC:</label>
         <select id="qc" name="qc" onchange="toggleInputQC()">
             <option value="Isa">Isa</option>
@@ -58,6 +113,8 @@
 
     <div id="hasilForm"></div>
 
+    <div id="newForm"></div>
+
 </div>
 
 <div class="container">
@@ -68,9 +125,115 @@
       <button type="button" onclick="removeEmptyLines()">Proses dan Salin</button>
     </form>
     <p id="output" class="para2"></p>
-  </div>
+</div>
 
-<script src="script.js"></script>
+<script>
+function tampilkanForm() {
+    var namaMesinPrefix = document.getElementById("namaMesinPrefix").value;
+    var namaMesinSuffix = document.getElementById("namaMesinSuffix").value;
+    var namaMesin = namaMesinPrefix + " " + namaMesinSuffix;
+    var namaProduk = document.getElementById("namaProduk").value;
+    var batchPrefix = document.getElementById("batchPrefix").value;
+    var batchSuffix = document.getElementById("batchSuffix").value;
+    var batch = batchPrefix + batchSuffix; // Menghapus spasi di antara prefix dan suffix
+    var jamTransfer = document.getElementById("jamTransfer").value;
+    var operatorMixing = document.getElementById("operatorMixing").value;
+    var rnd = document.getElementById("rnd").value;
+    var qc = document.getElementById("qc").value;
+    var note = document.getElementById("note").value;
+    
+    var hasilForm = "<p><strong>1. Mesin:</strong> " + namaMesin + "</p>" +
+                    "<p><strong>- Nama Produk:</strong> " + namaProduk + "</p>" +
+                    "<p><strong>- Batch:</strong> " + batch + "</p>" +
+                    "<p><strong>- Jam Transfer:</strong> " + jamTransfer + "</p>" +
+                    "<p><strong>- Operator Mixing:</strong> " + operatorMixing + "</p>" +
+                    "<p><strong>- RnD:</strong> " + rnd + "</p>";
+
+    if (qc === "Manual") {
+        var manualQC = document.getElementById("manualQC").value;
+        hasilForm += "<p><strong>- QC:</strong> " + manualQC + "</p>";
+    } else {
+        hasilForm += "<p><strong>- QC:</strong> " + qc + "</p>";
+    }
+    
+    hasilForm += "<p><strong>- Note:</strong> " + note + "</p>";
+    
+    var existingResults = document.getElementById("hasilForm").innerHTML;
+    var combinedResults = existingResults + hasilForm;
+    
+    document.getElementById("hasilForm").innerHTML = combinedResults;
+}
+
+function pindahHalaman() {
+    window.location.href = 'hapusteks.html';
+}
+
+function salinHasil() {
+    var hasilForm = document.getElementById("hasilForm").innerText;
+    navigator.clipboard.writeText(hasilForm)
+    .then(() => {
+        alert('Hasil berhasil disalin!');
+    })
+    .catch(err => {
+        console.error('Gagal menyalin: ', err);
+    });
+}
+
+function setJamSekarang() {
+    var now = new Date();
+    var hours = now.getHours().toString().padStart(2, '0');
+    var minutes = now.getMinutes().toString().padStart(2, '0');
+    var jam = hours + ":" + minutes;
+    document.getElementById("jamTransfer").value = jam;
+}
+
+function toggleInputRND() {
+    // No need to implement this function since there's no "Manual" option for RnD anymore.
+}
+
+function toggleInputQC() {
+    var qcSelect = document.getElementById("qc");
+    var manualQCInput = document.getElementById("manualQC");
+    if (qcSelect.value === "Manual") {
+        manualQCInput.style.display = "inline-block";
+    } else {
+        manualQCInput.style.display = "none";
+    }
+}
+
+function updateBatchText() {
+    var batchPrefix = document.getElementById("batchPrefix").value;
+    var batchSuffix = document.getElementById("batchSuffix").value;
+    var batch = batchPrefix + batchSuffix; // Menghapus spasi di antara prefix dan suffix
+    document.getElementById("batch").value = batch;
+}
+
+function updateNamaMesinText() {
+    var namaMesinPrefix = document.getElementById("namaMesinPrefix").value;
+    var namaMesinSuffix = document.getElementById("namaMesinSuffix").value;
+    var namaMesin = namaMesinPrefix + " " + namaMesinSuffix;
+    document.getElementById("namaMesin").value = namaMesin;
+}
+
+function removeEmptyLines() {
+    var inputText = document.getElementById("textInput").value;
+    var lines = inputText.split('\n');
+    var nonEmptyLines = lines.filter(function(line) {
+      return line.trim() !== '';
+    });
+    var outputText = nonEmptyLines.join('\n');
+    document.getElementById("output").textContent = "" + outputText;
+    
+    // Salin teks yang telah diproses ke clipboard
+    navigator.clipboard.writeText(outputText)
+    .then(() => {
+        alert('Teks berhasil diproses dan disalin!');
+    })
+    .catch(err => {
+        console.error('Gagal menyalin teks: ', err);
+    });
+}
+</script>
 
 </body>
 </html>
