@@ -134,7 +134,7 @@ h1 {
     <form id="form">
       <label for="textInput">Enter Text:</label>
       <textarea id="textInput" rows="5" cols="50"></textarea>
-      <button type="button" onclick="removeEmptyLines()">Proses dan Salin</button>
+      <button type="button" onclick="copyData()">Proses dan Salin</button>
     </form>
     <p id="output" class="para2"></p>
 </div>
@@ -177,18 +177,21 @@ function tampilkanForm() {
     document.getElementById("hasilForm").innerHTML = combinedResults;
 }
 
-function pindahHalaman() {
-    window.location.href = 'hapusteks.html';
+function copyData() {
+    var hasilFormText = document.getElementById("hasilForm").innerText;
+    var cleanedText = hasilFormText.replace(/\n\s*\n/g, '\n'); // Menghapus baris kosong
+    document.getElementById("textInput").value = cleanedText;
+    copyToClipboard(cleanedText);
 }
 
-function salinHasil() {
-    var hasilForm = document.getElementById("hasilForm").innerText;
-    navigator.clipboard.writeText(hasilForm)
+
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text)
     .then(() => {
-        alert('Hasil berhasil disalin!');
+        alert('Teks berhasil disalin!');
     })
     .catch(err => {
-        console.error('Gagal menyalin: ', err);
+        console.error('Gagal menyalin teks: ', err);
     });
 }
 
@@ -226,25 +229,6 @@ function updateNamaMesinText() {
     var namaMesinSuffix = document.getElementById("namaMesinSuffix").value;
     var namaMesin = namaMesinPrefix + " " + namaMesinSuffix;
     document.getElementById("namaMesin").value = namaMesin;
-}
-
-function removeEmptyLines() {
-    var inputText = document.getElementById("textInput").value;
-    var lines = inputText.split('\n');
-    var nonEmptyLines = lines.filter(function(line) {
-      return line.trim() !== '';
-    });
-    var outputText = nonEmptyLines.join('\n');
-    document.getElementById("output").textContent = "" + outputText;
-    
-    // Salin teks yang telah diproses ke clipboard
-    navigator.clipboard.writeText(outputText)
-    .then(() => {
-        alert('Teks berhasil diproses dan disalin!');
-    })
-    .catch(err => {
-        console.error('Gagal menyalin teks: ', err);
-    });
 }
 </script>
 
