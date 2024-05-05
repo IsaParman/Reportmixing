@@ -134,7 +134,7 @@ h1 {
     <form id="form">
       <label for="textInput">Enter Text:</label>
       <textarea id="textInput" rows="5" cols="50"></textarea>
-      <button type="button" onclick="copyData()">Proses dan Salin</button>
+      <button type="button" onclick="copyData()">Proses</button>
     </form>
     <p id="output" class="para2"></p>
 </div>
@@ -172,7 +172,7 @@ function tampilkanForm() {
     hasilForm += "<p><strong>- Note:</strong> " + note + "</p>";
     
     var existingResults = document.getElementById("hasilForm").innerHTML;
-    var combinedResults = existingResults + hasilForm;
+    var combinedResults = existingResults + hasilForm + "<br>";
     
     document.getElementById("hasilForm").innerHTML = combinedResults;
 }
@@ -181,18 +181,6 @@ function copyData() {
     var hasilFormText = document.getElementById("hasilForm").innerText;
     var cleanedText = hasilFormText.replace(/\n\s*\n/g, '\n'); // Menghapus baris kosong
     document.getElementById("textInput").value = cleanedText;
-    copyToClipboard(cleanedText);
-}
-
-
-function copyToClipboard(text) {
-    navigator.clipboard.writeText(text)
-    .then(() => {
-        alert('Teks berhasil disalin!');
-    })
-    .catch(err => {
-        console.error('Gagal menyalin teks: ', err);
-    });
 }
 
 function setJamSekarang() {
