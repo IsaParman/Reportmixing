@@ -134,7 +134,9 @@ h1 {
     <form id="form">
       <label for="textInput">Enter Text:</label>
       <textarea id="textInput" rows="5" cols="50"></textarea>
-      <button type="button" onclick="copyData()">Proses</button>
+      <button type="button" onclick="showData()">Proses</button>
+      <button type="button" onclick="salinHasil()">Salin</button>
+      <button type="button" onclick="bagikanData()">Bagikan</button>
     </form>
     <p id="output" class="para2"></p>
 </div>
@@ -177,7 +179,7 @@ function tampilkanForm() {
     document.getElementById("hasilForm").innerHTML = combinedResults;
 }
 
-function copyData() {
+function showData() {
     var hasilFormText = document.getElementById("hasilForm").innerText;
     var cleanedText = hasilFormText.replace(/\n\s*\n/g, '\n'); // Menghapus baris kosong
     document.getElementById("textInput").value = cleanedText;
@@ -218,6 +220,33 @@ function updateNamaMesinText() {
     var namaMesin = namaMesinPrefix + " " + namaMesinSuffix;
     document.getElementById("namaMesin").value = namaMesin;
 }
+
+function bagikanData() {
+    var textToShare = document.getElementById("textInput").value;
+    if (navigator.share) {
+        navigator.share({
+            text: textToShare
+        })
+        .then(() => console.log('Data dibagikan.'))
+        .catch((error) => console.error('Error saat membagikan data: ', error));
+    } else {
+        alert("Browser tidak mendukung fitur bagikan.");
+    }
+}
+
+function salinHasil() {
+    var hasilFormText = document.getElementById("hasilForm").innerText;
+    var cleanedText = hasilFormText.replace(/\n\s*\n/g, '\n'); // Remove empty lines
+    navigator.clipboard.writeText(cleanedText)
+    .then(() => {
+        alert('Hasil berhasil disalin!');
+    })
+    .catch(err => {
+        console.error('Gagal menyalin: ', err);
+    });
+}
+
+
 </script>
 
 </body>
